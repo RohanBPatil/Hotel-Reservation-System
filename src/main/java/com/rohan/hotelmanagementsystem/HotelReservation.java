@@ -1,6 +1,8 @@
 package com.rohan.hotelmanagementsystem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -9,9 +11,9 @@ public class HotelReservation {
 
 	// Add new hotel
 	public static void addHotel() {
-		hotelMap.put("Lakewood", new Hotel("Lakewood", 110, 90));
-		hotelMap.put("Bridgewood", new Hotel("Bridgewood", 160, 60));
-		hotelMap.put("Ridgewood", new Hotel("Ridgewood", 220, 150));
+		hotelMap.put("Lakewood", new Hotel("Lakewood", 3, 110, 90));
+		hotelMap.put("Bridgewood", new Hotel("Bridgewood", 4, 160, 60));
+		hotelMap.put("Ridgewood", new Hotel("Ridgewood", 5, 220, 150));
 	}
 
 	// extract date in numbers
@@ -31,15 +33,26 @@ public class HotelReservation {
 		int fromDate = extractDate(from);
 		int toDate = extractDate(to);
 		int cost = Integer.MAX_VALUE;
-		String cheapHotel = "";
+		List<Hotel> cheapHotels = new ArrayList<>();
+		
 		for (Map.Entry<String, Hotel> entry : hotelMap.entrySet()) {
 			int newCost = entry.getValue().getRegularWeekdayRate() * (toDate - fromDate + 1);
 			if (newCost < cost) {
-				cheapHotel = entry.getKey();
 				cost = newCost;
 			}
 		}
-		System.out.println("Cheapest hotel : " + cheapHotel + ", Total Rates : $" + cost);
+		for (Map.Entry<String, Hotel> entry : hotelMap.entrySet()) {
+			int costOfHotel = entry.getValue().getRegularWeekdayRate() * (toDate - fromDate + 1);
+			if(costOfHotel == cost)
+				cheapHotels.add(entry.getValue());
+		}
+		
+		System.out.print("Cheapest hotel : ");
+		
+		for(Hotel hotel : cheapHotels)
+			System.out.print(hotel.getName() + ", ");
+		
+		System.out.print("	Total Rates : $" + cost);
 	}
 
 	public static void main(String[] args) {

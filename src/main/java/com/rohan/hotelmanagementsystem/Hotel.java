@@ -3,11 +3,11 @@ package com.rohan.hotelmanagementsystem;
 public class Hotel {
 	private String name;
 	private int regularWeekdayRate, regularWeekendRate; //, rewardWeekdayRate, rewardweekendRate;
-	//private int rating;
+	private int rating;
 	
-	public Hotel(String name, int regularWeekdayRate, int regularWeekendRate) {
+	public Hotel(String name, int rating, int regularWeekdayRate, int regularWeekendRate) {
 		this.name = name;
-//		this.rating = rating;
+		this.rating = rating;
 		this.regularWeekdayRate = regularWeekdayRate;
 		this.regularWeekendRate = regularWeekendRate;
 //		this.rewardWeekdayRate = rewardWeekdayRate;
@@ -54,12 +54,12 @@ public class Hotel {
 //		this.rewardweekendRate = rewardweekendRate;
 //	}
 //
-//	public int getRating() {
-//		return rating;
-//	}
-//
-//	public void setRating(int rating) {
-//		this.rating = rating;
-//	}
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
 	
 }
